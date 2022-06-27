@@ -1,0 +1,27 @@
+*************** Objective:
+objective_01:------ Create a database called "contact":
+> use contact
+
+objective_02:------ Create a collection called "contactlist":
+> db.contactlist.insertMany([{lastName: "Ben Lahmer",firstName: "Fares",email: "fares@gmail.com",age: 26},{lastName: "Kefi",firstName: "Seif",email: "kefi@gmail.com",age: 15},{lastName: "Fatnassi",firstName: "Sarra",email: "sarra.f@gmail.com",age: 40,},{lastName: "Ben Yahia",firstName: "Rym",age: 4},{lastName: "Cherif",firstName: "Sami",age: 3}])
+
+
+*************** Instructions:
+instructions_01:-------- Display all the information about only one person using his ID.
+> db.contactlist.find({_id: ObjectId("62b8d9bfb08332e30ac8e578"})
+
+instructions_02:-------- Display all the contacts with an age >18:
+> db.contactlist.find({age:{$gt: 18}})
+
+instructions_03:-------- Display all the contacts with an age>18 and name containing "ah":
+> db.contactlist.find({age:{$gt: 18}, $or:[{lastName:{'$regex':'ah'}},{firstName:{'$regex':'ah'}}]})
+
+instructions_04:-------- Change the contact's first name from"Kefi Seif" to "Kefi Anis":
+> db.contactlist.update({lastName: "Kefi"},{$set:{firstName:"Anis"}})
+
+instructions_05:-------- Delete the contacts that are aged under <5:
+> db.contactlist.deleteMany({age:{$lt:5}})
+
+instructions_06:-------- Display all of the contacts list:
+> db.contactlist.find()
+> db.contactlist.find().pretty()
